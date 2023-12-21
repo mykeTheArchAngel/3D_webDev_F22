@@ -1,107 +1,95 @@
-# Web 3D Tutorial
+<img src= "https://github.com/mykeTheArchAngel/3D_webDev_F22/assets/10962678/09d852b3-cfb7-4c62-a517-467ff85a5862" alt="F22_raptor" width="500"/>
 
-_Blender to Web3D as fast as possible_
+Requirements:
 
-![Preview](/public/preview.png)
+    Node.js
+    VS Code , 
+    Blender ,  Blender to Web
 
-This repo is meant to accompany a tutorial series on Youtube that starts here: https://youtu.be/1BvLpt7egss
+Resources:
 
-As the course advances I'll add scripts here to make some tasks easier and grow this to be a Blender to Web toolkit.
+    Flying Apartment Asset
+    React Three Fiber: Three.js Renderer
+    Drei: React Three Fiber Helpers
+    Three.js: 3D Engine
+    Vite: Static Web Server
+    CodeSandbox: Online Prototyping Container (optional)
 
-Discuss here on Discord: https://discord.gg/5rTCdzpKnj
+Installation
 
-### Requirements:
-
-- [Node.js](https://nodejs.org/en/download/)
-- [VS Code](https://code.visualstudio.com/download) , to follow along with the tutorial
-- [Blender](https://www.blender.org/download/) , We are focusing on Blender to Web
-### Resources:
-
-- [Flying Apartment Asset](https://www.cgtrader.com/3d-models/exterior/cityscape/cyberpunk-flying-apartment)
-- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/): Three.js Renderer
-- [Drei](https://github.com/pmndrs/drei): React Three Fiber Helpers
-- [Three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene): 3D Engine
-- [Vite](https://vitejs.dev/guide/): Static Web Server
-- [CodeSandbox](https://codesandbox.io/docs/configuration): Online Prototyping Container (optional)
-
-### Installation
-
-```
 npm install
-```
 
-### Getting Started
+Getting Started
 
-1. Open a model in Blender you want to publish (places like [CG Trader](https://www.cgtrader.com/) are a good start)
-2. Export to `public/model.glb`
-3. open a terminal to `/src` directory
-4. run `npx gltfjsx ../public/model.glb`
-5. rename the new `Model.js` to `Model.jsx`
-6. run `npm run dev` from terminal
-7. look at what you did, tune and repeat
-### Scripts
+    Open a model in Blender you want to publish (places like CG Trader are a good start)
+    Export to public/model.glb
 
-```
+    open a terminal to /src directory
+    run npx gltfjsx ../public/model.glb
+    rename the new Model.js to Model.jsx
+    run npm run dev from terminal
+    look at what you did, tune and repeat
+
+Scripts
+
 npm run dev
 npm run build
 npm run preview
 npm run sandbox
-```
-### detailed notes for Blender -> Web3D
 
-#### Models
+detailed notes for Blender -> Web3D
+Models
 
-1. Import your model (I got an stl from printables.com)
-2. Models CAN be created progmatically if that makes sense to do.
-3. Models can come from multiple files
-4. test things with gltf export NOT glb
-5. Split parts
-   1. by whats separate
-   2. by materials
-   3. select faces + more technique
-6. Reduce geometry
-   1. Remove unnecessary components for 3d printing
-   2. highlight and dissolve unnecessary vertices
-   3. limited dissolve intricate parts
-7. join parts and set origins logically for use later
-8. rename parts to what's easy to recognize
-9. parent objects based on what needs to move together
-10. add materials (detailed separately)
-11. add lights (detailed separately)
+    Import your model 
+    Models CAN be created progmatically if that makes sense to do.
+    Models can come from multiple files
+    test things with gltf export NOT glb
+    Split parts
+        by whats separate
+        by materials
+        select faces + more technique
+    Reduce geometry
+        Remove unnecessary components for 3d printing
+        highlight and dissolve unnecessary vertices
+        limited dissolve intricate parts
+    join parts and set origins logically for use later
+    rename parts to what's easy to recognize
+    parent objects based on what needs to move together
+    add materials (detailed separately)
+    add lights (detailed separately)
 
+Materials
 
-#### Materials
+    Materials in Blender
+    UVs
+        bulk script on Gist
+    GLTF export materials
+    BSDF Material
+    Baking Materials
+    Materials in R3F
+        Special materials
+        Cloning
+        Modifying
+        Unique capabilities
 
-1. Materials in Blender
-2. UVs
-   1. bulk script on Gist
-3. GLTF export materials
-4. BSDF Material
-5. Baking Materials
-6. Materials in R3F
-   1. Special materials
-   2. Cloning
-   3. Modifying
-   4. Unique capabilities
+Lighting
 
-#### Lighting
+    more lights == slower performance
+    use '-s' in gltfjsx transform
+        include drei Instances if using -i
+    add these properties to each light: castShadow shadow-mapSize={[2048, 2048]} shadow-bias={-.0000001} in Model.jsx
+    adjust intensity values and shadow-bias
+    add castShadow receiveShadow to instance Merged tag in Model.jsx
 
-1. more lights == slower performance
-2. use '-s' in gltfjsx transform
-   1. include drei Instances if using -i
-3. add these properties to each light: castShadow shadow-mapSize={[2048, 2048]} shadow-bias={-.0000001} in Model.jsx
-4. adjust intensity values and shadow-bias
-5. add castShadow receiveShadow to instance Merged tag in Model.jsx 
+Animating
 
-#### Animating
-
-1. useFrame lerp https://medium.com/@zmommaerts/animate-a-camera-in-react-three-fiber-7398326dad5d
-2. Theater js https://www.theatrejs.com/
-3. useAnimations:
-   1. naming is everything!
-   2. NLA tracks are a pain
-   3. can group virtually
-   4. onClick interactions
-   5. play forward and backward. 
-4. Spring https:/docs.pmnd.rs/react-three-fiber/tutorials/using-with-react-spring
-5. Drei Animations
+    useFrame lerp https://medium.com/@zmommaerts/animate-a-camera-in-react-three-fiber-7398326dad5d
+    Theater js https://www.theatrejs.com/
+    useAnimations:
+        naming is everything!
+        NLA tracks are a pain
+        can group virtually
+        onClick interactions
+        play forward and backward.
+    Spring https:/docs.pmnd.rs/react-three-fiber/tutorials/using-with-react-spring
+    Drei Animations
